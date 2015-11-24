@@ -1,0 +1,60 @@
+﻿Sulfur SAD Scaling Optimization Strategy
+
+Short Manual to use SSSOS scripts on PX beamline in SOLEIL
+
+
+######################################################
+anomDendro_sftools.py
+######################################################
+
+purpose : Input could be : multiple XDS_ASCII.HKL or one XSCALE.HKL.
+From multiples XDS_ASCII.HKL : it plots a table of anomalous correlations calculated by SFTOOLS ccp4 and creates a hierarchical clustering of the datasets.
+From one XSCALE.HKL : it separates the “hkl” and groups them by “source” (i.e : according the ID number at the end of each line. The new *.hkl file obtained after splitting, will be used by SFTOOLS ccp4 to calculate anomalous correlation table and create hierarchical clustering of the datasets. 
+This helps to classify different datasets after or before scaling/merging using  the anomalous correlation as criteria.
+
+
+command : 
+anomDendro.py XSCALE.HKL Or
+anomDendro.py XDS_ASCII.1.HKL XDS_ASCII.2.HKL ... XDS_ASCII.n.HKL
+
+######################################################
+extract_SCALE.sh
+######################################################
+purpose : Plots the values extracted from INTEGRATE.LP : Values are scale parameters, the divergence, the mosaicity. 
+
+command : extract_SCALE.sh INTEGRATE.LP
+
+######################################################
+plot-n-compare_LP.py
+######################################################
+purpose : Plot multiple CORRECT.LP or XSCALE.LP. From the *.LP given it extract values from the table to plot them in ccp4 style. The possibility to give multiple input file is suitable to compare visually and rapidly different datasets or scaling strategies. 
+
+command : 
+plot-n-compare_LP.py XSCALE.LP Or 
+plot-n-compare_LP.py XSCALE_1.LP ... XSCALE_n.LP Or
+plot-n-compare_LP.py CORRECT1.LP CORRECT2.LP ... CORRECTN.LP 
+ 
+######################################################
+xds_SSSOS.py 
+######################################################
+purpose : From one XDS.INP it creates automatically different directories to test different settings of XDS. Practically, it creates all required symbolic links (to already existing file from xds) and creates a new XDS.INP. After the execution it is just needed to execute xds_par in each directory of interest.
+
+command :
+xds_SSSOS.py XDS.INP    (interactive style with questions) Or
+xds_SSOS.py -option1 -option2 … XDS.INP
+WARNING : If the command line style and -S0 are used, the xds_par runs automatically at the end of the script.
+
+command line options available : 
+-S0 :  to test only scheme S0 (FRIEDEL'S_LAW = TRUE and STRICT_ABSORBPTION = TRUE) 
+-r : to test different resolutions (close to the original one)
+-Prs :  maybe suitable for very low dose data collection : use the Keyword DATA_RANGE_FIXED_SCALE_FACTOR = All frames 1 (i.e : prescaling parameteres setting is fixed and equal to 1.)
+
+######################################################
+xscale_SSSOS.py
+######################################################
+purpose : From a XSCALE.INP it creates automatically different directories to test  different settings of XSCALE. Practically, it creates all required symbolic links (to already existing files from x) and creates a new XSCALE.INP. After execution it is just needed thqt you execute xscale_par in each directory of interest.
+
+command :
+xscale_SSSOS.py XSCALE.INP (interactive style with questions)
+
+
