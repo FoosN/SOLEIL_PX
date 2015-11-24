@@ -211,16 +211,16 @@ def resolutionShells(xdsinp):
                     xdsinp.__setitem__(xdsinp.index(lines), newline)
 
 def givenUserOption():
-    option1 = raw_input ('Please chose if you want use the parameter \
+    option1 = raw_input ('Please chose if you want to use the parameter \
     ZERO_DOSE [N/y] : ')
     if option1 == '' :
         option1 = 'N'
     else:
         option1 = option1
     
-    option2 = raw_input ('Please chose if you want use the parameter \
-    which modify the CORRECTION options "m" for MODULATION, "d" for DECAY, "a" for \
-    ABSORP, "n" for NONE default is ALL (example : md) :')
+    option2 = raw_input ('Please choose if you want to modify the corrections parameters\
+ concern CORRECTION options : "m" for MODULATION, "d" for DECAY, "a" for\
+ ABSORP, "n" for NONE default is ALL (example : md):')
     if option2 =='':
         option2 = 'all'
     else:

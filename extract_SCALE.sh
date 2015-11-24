@@ -28,7 +28,7 @@
 #POSSIBILITY OF SUCH DAMAGE."""
 #create working directory
 test ! -d analyse_$1 && mkdir analyse_$1 
-#extract column and frame number and for each : correction factor for Scale in INTEGREATE.LP
+#extract column and frame number and for each : correction factor for Scale in INTEGRATE.LP
 echo "run with" $1
 prefix='$1'
 egrep " .....   0 ...... ........   ..  .....    ....   ...  ......  ......" $1 > analyse_$1/frames.scales
